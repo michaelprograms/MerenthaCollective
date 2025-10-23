@@ -17,19 +17,14 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '22'
-          cache: 'yarn'
 
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Build
-        run: yarn build
+      - name: Install dependencies and Build
+        run: |
+          yarn install --frozen-lockfile
+          yarn build
 
       - name: Deploy main branch to GitHub Pages
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
