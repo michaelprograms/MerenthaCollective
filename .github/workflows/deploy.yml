@@ -16,6 +16,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Enable Corepack
+        run: corepack enable
+
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
@@ -23,7 +26,7 @@ jobs:
 
       - name: Install dependencies and Build
         run: |
-          yarn install --frozen-lockfile
+          yarn install
           yarn build
 
       - name: Deploy main branch to GitHub Pages
